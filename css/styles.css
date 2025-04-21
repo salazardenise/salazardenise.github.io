@@ -9,11 +9,15 @@ html, body {
 
 header, main {
     padding: 10px;
+    text-align: center;
 }
 
 /* Main content should expand to fill available space */
 main {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 /* Footer styling */
@@ -21,4 +25,22 @@ footer {
     text-align: center;
     padding: 10px;
     background-color: #f1f1f1;
+}
+
+/* Social links section styling */
+#social-links {
+    text-align: center;
+    margin-top: auto; /* Push it to the bottom of the main content */
+    padding: 10px 0;
+    background-color: #f9f9f9;
+}
+
+#social-links a {
+    margin: 0 10px;
+    color: #333;
+    text-decoration: none;
+}
+
+#social-links a:hover {
+    color: #0073e6; /* Change color on hover */
 }
