@@ -1,0 +1,24 @@
+/* Ensure the body and html take up full height */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+header, main {
+    padding: 10px;
+}
+
+/* Main content should expand to fill available space */
+main {
+    flex: 1;
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #f1f1f1;
+}
