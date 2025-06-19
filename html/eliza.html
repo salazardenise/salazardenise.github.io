@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Pyodide -->
+    <!-- Pyodide - hosted distribution of Pyodide -->
     <script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script>
     <title>Eliza</title>
     <link rel="stylesheet" href="../css/styles.css">
@@ -17,7 +17,7 @@
     </header>
     <main>
       <section id="eliza">
-        <p>Eliza is a chatbot that can be used to practice conversation skills.</p>
+        <p id="eliza_history"></p> 
         <div id="chatbox">
             <div id="messages"></div>
             <input type="text" id="user_input" placeholder="Type your message here..." onkeydown="if(event.key === 'Enter') runPython()">
@@ -71,12 +71,13 @@ response = chatbot_response(user_input)
 response
           `);
             document.getElementById("bot_response").innerText = "Bot: " + response;
+            // update eliza history
+            document.getElementById("eliza_history").innerText += "User: " + user_input + "\n";
+            document.getElementById("eliza_history").innerText += "Bot: " + response + "\n";
           } catch (error) {
             console.error('Error running Python code:', error);
           }
         }
-
       </script>
-    
 </body>
 </html>

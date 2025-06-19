@@ -5,17 +5,12 @@ grammar = {
     "am": "are",
     "was": "were",
     "i": "you",
-    "i would": "you would",
     "i'd": "you would",
-    "i have": "you have",
     "i've": "you have",
-    "i will": "you will",
     "i'll": "you will",
     "my": "your",
     "are": "am",
-    "you have": "I have",
     "you've": "I have",
-    "you will": "I will",
     "you'll": "I will",
     "your": "my",
     "yours": "mine",
@@ -51,7 +46,7 @@ def analyze(user_input):
 def chatbot_response(user_input):
     return analyze(user_input)
 
-# if __name__ == "__main__":
-#     user_input = input("You: ")
-#     print("Bot: " + chatbot_response(user_input))
+if __name__ == "__main__":
+    user_input = input("You: ")
+    print("Bot: " + chatbot_response(user_input))
     
