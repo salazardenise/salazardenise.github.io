@@ -74,6 +74,9 @@ response
             // update eliza history
             document.getElementById("eliza_history").innerText += "User: " + user_input + "\n";
             document.getElementById("eliza_history").innerText += "Bot: " + response + "\n";
+            // erase user input
+            document.getElementById("user_input").value = "";
+            document.getElementById("user_input").focus();
           } catch (error) {
             console.error('Error running Python code:', error);
           }

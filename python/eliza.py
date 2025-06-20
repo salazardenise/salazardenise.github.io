@@ -19,12 +19,13 @@ grammar = {
 }
 
 rules = [
-    ["(.*)I think(.*)", ["Do you really think so?", "But you are not sure you think so."]],
-    ["(.*)I know(.*)", ["Do you really know?", "But you are not sure you know."]],
-    ["(.*)hello(.*)", ["Hi there. Please state your problem."]],
-    ["(.*)name(.*)", ["Great, good to know.","I am not interested in names."]],
-    ["(.*)sorry(.*)", ["Please don't apologize.","Apologies are not necessary.","What feelings do you have when you apologize?"]],
-    ["(.*)", ["Tell me more!", "\\2"]],
+    [r"I feel (.*)", ["Why do you feel {0}?", "Do you often feel {0}?"]],
+    [r"(.*)I think(.*)", ["Do you really think so?", "But you are not sure you think so."]],
+    [r"(.*)I know(.*)", ["Do you really know?", "But you are not sure you know."]],
+    [r"(.*)hello(.*)", ["Hi there. Please state your problem."]],
+    [r"(.*)name(.*)", ["Great, good to know.","I am not interested in names."]],
+    [r"(.*)sorry(.*)", ["Please don't apologize.","Apologies are not necessary.","What feelings do you have when you apologize?"]],
+    [r"(.*)", ["Tell me more!", "\\2"]],
 ]
 
 def reflect(fragment):
@@ -40,7 +41,7 @@ def analyze(user_input):
         if match:
             response = random.choice(messages)
             reflected = reflect(match.group())
-            return re.sub(r"\\2", reflected, response)
+            return re.sub(r"\\2", reflected, response.format(match.group(1)))
     return "I don't understand."
 
 def chatbot_response(user_input):
