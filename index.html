@@ -3,47 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Denise's Portfolio</title>
+    <title>Denise Salazar</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="images/favicon/favicon.ico" type="images/favicon/x-icon">
 </head>
 <body>
-    <header>
-        <h1>Denise's Portfolio</h1>
-    </header>
-    <main>
-        <section id="projects">
-            <h2>Projects</h2>
-            <div class="projects-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Project</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><a href="https://huggingface.co/spaces/salazardenise/hot_dog_not_hot_dog" target="_blank">Hot Dog Image Classifier</a></td>
-                            <td>Simple image classifier for hot dogs. Fine tuned on resnet 18 using fastai library. Built as python gradio app.</td>
-                        </tr>
-                        <tr>
-                            <td><a href="html/eliza.html" target="_blank">Eliza</a></td>
-                            <td>Eliza is a chatbot that can be used to practice conversation skills. This is inspired by the first chatbot, an early NLP computer program created by Joseph Weizenbaum in 1966.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    </main>
-    <div id="footer-placeholder"></div>
-    <script>
-        fetch('../html/footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer-placeholder').innerHTML = data;
-        });
-    </script>
+    <nav class="navbar">
+        <a href="index.html" class="active">Home</a>
+        <a href="html/eliza.html">Eliza</a>
+    </nav>
+    <div class="content-wrapper">
+        <div class="content">
+            <header>
+                <h1>Denise's Portfolio</h1>
+            </header>
+            <main>
+                <section id="projects">
+                    <h2>Projects</h2>
+                    <div class="projects-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Project</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="https://huggingface.co/spaces/salazardenise/hot_dog_not_hot_dog" target="_blank">Hot Dog Image Classifier</a></td>
+                                    <td>Simple image classifier for hot dogs. Fine tuned on resnet 18 using fastai library. Built as python gradio app.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="html/eliza.html" target="_blank">Eliza</a></td>
+                                    <td>Eliza is a chatbot that can be used to practice conversation skills. This is inspired by the first chatbot, an early NLP computer program created by Joseph Weizenbaum in 1966.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+            <div id="footer-placeholder"></div>
+            <script>
+                fetch('../html/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                });
+            </script>
+        </div>
+    </div>
 </body>
 </html>
