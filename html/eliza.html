@@ -69,23 +69,27 @@
         };
 
         let pyodideReadyPromise = loadPyodideAndPythonFile()
+        const bot_response_element = document.getElementById("bot_response")
+        const eliza_history_element = document.getElementById("eliza_history")
+        const user_input_elment = document.getElementById("user_input")
 
         async function runPython() {
           let pyodide = await pyodideReadyPromise
-          const user_input = document.getElementById("user_input").value;
+          const user_input = user_input_elment.value;
           pyodide.globals.set("user_input", user_input);
           try {
             let response = await pyodide.runPythonAsync(`
 response = chatbot_response(user_input)
 response
           `);
-            document.getElementById("bot_response").innerText = "Bot: " + response;
+            bot_response_element.innerText = "Bot: " + response;
             // update eliza history
-            document.getElementById("eliza_history").innerText += "User: " + user_input + "\n";
-            document.getElementById("eliza_history").innerText += "Bot: " + response + "\n";
+            eliza_history_element.innerText += "User: " + user_input + "\n";
+            eliza_history_element.innerText += "Bot: " + response + "\n";
+            eliza_history_element.scrollTop = eliza_history_element.scrollHeight;
             // erase user input
-            document.getElementById("user_input").value = "";
-            document.getElementById("user_input").focus();
+            user_input_elment.value = "";
+            user_input_elment.focus();
           } catch (error) {
             console.error('Error running Python code:', error);
           }
