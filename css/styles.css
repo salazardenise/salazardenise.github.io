@@ -101,3 +101,22 @@ footer {
 #social-links a:hover {
     color: #0073e6; /* Change color on hover */
 }
+
+/* GitHub stats section styling */
+.github-stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.github-stats-container img {
+    border-radius: 8px;
+    transition: filter 0.3s ease;
+    cursor: pointer;
+}
+
+.github-stats-container img:hover {
+    filter: brightness(0.8);
+}
