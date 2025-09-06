@@ -1,3 +1,18 @@
+"""
+ELIZA Chatbot Implementation
+
+A simple implementation of the ELIZA chatbot, inspired by Joseph Weizenbaum's 
+original 1966 program. This chatbot uses pattern matching and simple grammar 
+transformation to generate responses.
+
+The chatbot responds to user input by:
+1. Matching input against predefined patterns
+2. Transforming pronouns and verb forms
+3. Generating appropriate responses based on matched patterns
+
+Author: Denise Salazar
+"""
+
 import re
 import random
 
@@ -28,26 +43,65 @@ rules = [
     [r"(.*)", ["Tell me more!", "\\2"]],
 ]
 
-def reflect(fragment):
+def _reflect(fragment):
+    """
+    Transform pronouns and verb forms from first person to second person.
+    
+    This function converts the input from first person perspective to second person
+    perspective by replacing pronouns and verb forms according to the grammar rules.
+    For example, "I am happy" becomes "you are happy".
+    
+    Args:
+        fragment (str): The text fragment to transform
+        
+    Returns:
+        str: The transformed text with pronouns and verbs converted
+    """
     tokens = fragment.lower().split()
     for i, token in enumerate(tokens):
         if token in grammar:
             tokens[i] = grammar[token]
     return ' '.join(tokens)
 
-def analyze(user_input):
+def _analyze(input_text):
+    """
+    Analyze input_text and generate an appropriate response.
+    
+    This function matches the input_text against predefined patterns and generates
+    a response based on the first matching pattern. It uses regex matching to identify
+    patterns and applies pronoun reflection to create more natural responses.
+    
+    Args:
+        input_text (str): The input text to analyze
+        
+    Returns:
+        str: A response string based on the matched pattern, or "I don't understand."
+             if no pattern matches
+    """
     for pattern, messages in rules:
-        match = re.match(pattern, user_input.rstrip(".!"))
+        match = re.match(pattern, input_text.rstrip(".!"))
         if match:
             response = random.choice(messages)
-            reflected = reflect(match.group())
+            reflected = _reflect(match.group())
             return re.sub(r"\\2", reflected, response.format(match.group(1)))
     return "I don't understand."
 
-def chatbot_response(user_input):
-    return analyze(user_input)
+def chatbot_response(input_text):
+    """
+    Main interface function for the ELIZA chatbot.
+    
+    This is the primary function that should be called to get a response from the
+    ELIZA chatbot. It serves as a wrapper around the analyze function and provides
+    a clean interface for external code to interact with the chatbot.
+    
+    Args:
+        input_text (str): The input text
+        
+    Returns:
+        str: The chatbot's response to the input_text
+    """
+    return _analyze(input_text)
 
 if __name__ == "__main__":
     user_input = input("You: ")
     print("Bot: " + chatbot_response(user_input))
-    
